@@ -1,0 +1,17 @@
+---
+- hosts: all
+  tasks:
+    - name: copy script which is going ro run on cron task
+      copy: 
+        src: /home/avinash/crn.sh
+        dest: /home/admin/
+    - name: change permmission
+      command: chmod +x /home/admin/crn.sh
+    - name: Creates an entry like "@reboot /some/job.sh"
+      cron:
+        name: "a job for reboot"
+        special_time: reboot
+        job: "/home/admin/crn.sh"
+
+    - name: reboot the machine with all defaults
+      reboot:

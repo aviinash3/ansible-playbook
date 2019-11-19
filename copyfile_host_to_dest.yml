@@ -1,0 +1,28 @@
+---
+- hosts: all
+  tasks:
+    - name: install zip
+      yum:
+        name: unzip
+        state: present
+    - name: Create a directory if it does not exist
+      file:
+        path: /home/admin/virtual_machine
+        state: directory
+    - name: change permission
+      command: chmod 764 /home/admin/virtual_machine
+
+    - name: downlodfile from github
+      get_url:
+        url: https://github.com/dgadiraju/multinode/archive/master.zip
+        dest: /home/admin/virtual_machine
+        remote_src: yes
+    - name: Unarchives the zip file
+      command: unzip /home/admin/virtual_machine/multinode-master.zip -d  /home/admin/virtual_machine/
+
+
+      #      win_unzip:
+      #        src: /home/admin/virtual_machine/multinode-master.zip
+      #        dest: /home/admin/virtual_machine
+      #        recurse: yes
+        #        delete_archive: yes

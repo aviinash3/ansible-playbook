@@ -1,0 +1,19 @@
+---
+- hosts: all
+  tasks:
+    - name: setup user
+      user: 
+        name: avinash
+        group: wheel
+        create_home: true
+    - name: add user to sudoers file
+      lineinfile:
+        path: /etc/sudoers
+        regexp: '^avinash'
+        line: 'avinash ALL=(ALL) NOPASSWD: ALL'
+        validate: 'visudo -cf %s'
+    - name: Set authorized key taken from file
+      authorized_key:
+        user: avinash
+        state: present
+        key: "{{ lookup('file', '/home/avinash/.ssh/mykeys.pub') }}"

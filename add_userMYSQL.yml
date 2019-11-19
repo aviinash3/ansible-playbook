@@ -1,0 +1,10 @@
+---
+- hosts: all
+  tasks:
+    - name: create database
+      mysql_db: 
+        name: hive 
+        state: present
+    - name: create user
+      mysql_user: name=hive password=redhat priv=demo.*:ALL host='%' state=present
+

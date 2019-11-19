@@ -1,0 +1,11 @@
+---
+
+- hosts: all
+  tasks:
+    - name: Install NTP
+      yum:
+        name: ntpdate 
+        state: latest
+        state: present
+    - name: set timezone
+      shell: timedatectl set-timezone Asia/Kolkata

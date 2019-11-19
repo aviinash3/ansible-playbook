@@ -1,0 +1,19 @@
+---
+- hosts: all
+  tasks:
+  - name: create partitions for vdb
+    parted:
+      device: /dev/vdb
+      number: 1
+      state: present
+  - name: formate vdb
+    filesystem:
+      fstype: ext4
+      dev: /dev/vdb
+  - name: mount vdb to /data
+    mount:
+      src: /dev/vdb
+      path: /data
+      state: mounted
+      fstype: ext4
+

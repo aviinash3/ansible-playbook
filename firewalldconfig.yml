@@ -1,0 +1,8 @@
+---
+- hosts: all
+  tasks:
+    - name: disablefirewall on boot 
+      systemd:
+        name: firewalld
+        daemon_reload: no
+        enabled: false
