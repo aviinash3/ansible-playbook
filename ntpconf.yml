@@ -20,7 +20,7 @@
         enabled: true 
 
     - name: Copy over the NTP configuration
-      template: src=/home/avinash/itversity/task2/ntp_data/ntp.conf.j2 dest=/etc/ntp.conf
+      template: src=/home/admin/ntp_data/ntp.conf.j2 dest=/etc/ntp.conf
 
     - name: restart ntpd
       service:
@@ -71,7 +71,7 @@
       shell: firewall-cmd --reload
  
     - name: Copy over the NTP configuration
-      template: src=/home/avinash/itversity/task2/ntp_data/slave/ntp.conf.j2 dest=/etc/ntp.conf
+      template: src=/home/admin/ntp_data/slave/ntp.conf.j2 dest=/etc/ntp.conf
 
     - name: restart ntpd
       service:
